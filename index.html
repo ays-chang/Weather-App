@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+  <link href="src/styles.css" rel="stylesheet" type="text/css" />
+  <script src="https://kit.fontawesome.com/91fc485f8f.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Weather Search</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="weather-app">
+
+      <div class="search-bar">
+        <form class="row row-cols-auto g-1 align-items-end" id="search-bar">
+          <div class="col logo">
+            <img src="images/weather-logo.png" alt="weather-logo" width="100px" />
+          </div>
+          <div class="col-7">
+            <div class="col">
+              <input type="search" class="form-control form-control-lg" placeholder="Search location" id="search-input"/>
+            </div>
+          </div>
+          <div class="col">
+            <button type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+            <button type="submit">
+              <i class="fas fa-map-marker-alt" id="current-location"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="data">
+        <div class="row">
+          <h1>
+            <span id="result-city">Vancouver</span>
+          </h1>
+          <ul>
+            <li>
+              <span id="result-date-time">Day & Time</span>
+            </li>
+            <li>
+              <span id="result-weather">Raining</span>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="row">
+              <div class="col-3">
+                <span class="temperature" id="result-temperature">10</span><span class="units">°C</span>
+              </div>
+              <div class="col-9">
+
+              </div>     
+            </div>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li>
+                Humidity: <span id="result-humidity">80</span>%
+              </li>
+              <li>
+                Wind: <span id="result-wind">2</span> km/h
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <script src="src/index.js"></script>
+</body>
+
+</html>
