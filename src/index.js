@@ -60,6 +60,13 @@ function showWeather(response) {
   let resultTemp = document.querySelector("#result-temperature");
   resultTemp.innerHTML = `${temperature}`;
 
+  let weatherIcon = document.querySelector("#weather-icon");
+  weatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  weatherIcon.setAttribute("alt", response.data.weather[0].description);
+
   let weather = response.data.weather[0].main;
   let resultWeather = document.querySelector("#result-weather");
   resultWeather.innerHTML = `${weather}`;

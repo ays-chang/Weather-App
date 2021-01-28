@@ -65,16 +65,15 @@ button {
 }
 
 .weather-icon {
-  height: 64px;
-  width: 64px;
-  margin-right: 10px;
+  height: 96px;
+  width: 96px;
+  float: left;
 }
 
 .temperature {
-  color: rgb(33, 33, 33);
+  color: #000;
   font-size: 64px;
   font-weight: 400;
-  line-height: 1;
 }
 
 .units {
