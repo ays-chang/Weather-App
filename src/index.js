@@ -78,20 +78,24 @@ function showWeather(response) {
   let wind = Math.round(response.data.wind.speed);
   let resultWind = document.querySelector("#result-wind");
   resultWind.innerHTML = `${wind}`;
+
+  celcius = response.data.main.temp;
 }
 // END WEATHER SEARCH RESULTS
 
-// FAHRENHEIT CONVERSION
+// CELCIUS FAHRENHEIT CONVERSION
 function showFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitConvert = (10 * 9) / 5 + 32;
+  let fahrenheitConvert = (celcius * 9) / 5 + 32;
   let temperature = document.querySelector("#result-temperature");
   temperature.innerHTML = Math.round(fahrenheitConvert);
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", showFahrenheit);
-// END FAHRENHEIT CONVERSION
+
+let celcius = null;
+// END CELCIUS FAHRENHEIT CONVERSION
 
 // WEATHER GEOLOCATION API
 function currentPosition(event) {
