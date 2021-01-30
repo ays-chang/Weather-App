@@ -81,6 +81,18 @@ function showWeather(response) {
 }
 // END WEATHER SEARCH RESULTS
 
+// FAHRENHEIT CONVERSION
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitConvert = (10 * 9) / 5 + 32;
+  let temperature = document.querySelector("#result-temperature");
+  temperature.innerHTML = Math.round(fahrenheitConvert);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenheit);
+// END FAHRENHEIT CONVERSION
+
 // WEATHER GEOLOCATION API
 function currentPosition(event) {
   event.preventDefault();
