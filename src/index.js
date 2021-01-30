@@ -111,3 +111,5 @@ function requestPosition(position) {
 let nowLocation = document.querySelector("#current-location");
 nowLocation.addEventListener("click", currentPosition);
 // END WEATHER GEOLOCATION API
+
+search("Vancouver");
