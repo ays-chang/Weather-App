@@ -56,7 +56,9 @@ function showWeather(response) {
   let resultCity = document.querySelector("#result-city");
   resultCity.innerHTML = `${city}`;
 
-  let temperature = Math.round(response.data.main.temp);
+  celciusTemperature = response.data.main.temp;
+
+  let temperature = Math.round(celciusTemperature);
   let resultTemp = document.querySelector("#result-temperature");
   resultTemp.innerHTML = `${temperature}`;
 
@@ -78,23 +80,30 @@ function showWeather(response) {
   let wind = Math.round(response.data.wind.speed);
   let resultWind = document.querySelector("#result-wind");
   resultWind.innerHTML = `${wind}`;
-
-  celcius = response.data.main.temp;
 }
 // END WEATHER SEARCH RESULTS
 
 // CELCIUS FAHRENHEIT CONVERSION
 function showFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitConvert = (celcius * 9) / 5 + 32;
+  let fahrenheitConvert = (celciusTemperature * 9) / 5 + 32;
   let temperature = document.querySelector("#result-temperature");
   temperature.innerHTML = Math.round(fahrenheitConvert);
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheit");
+function showCelcius(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#result-temperature");
+  temperature.innerHTML = Math.round(celciusTemperature);
+}
+
+let celciusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheit);
 
-let celcius = null;
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", showCelcius);
 // END CELCIUS FAHRENHEIT CONVERSION
 
 // WEATHER GEOLOCATION API
