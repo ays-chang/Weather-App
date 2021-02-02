@@ -40,12 +40,36 @@ function searchInput(event) {
 }
 // END SEARCH LOCATION BAR
 
+// WEATHER FORECAST
+function showForecast(response) {
+  let resultForecast = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+
+  resultForecast.innerHTML = `<div class="col-2">
+          <h2 class="forecast-day">
+            Mon
+          </h2>
+          <img src="http://openweathermap.org/img/wn/${
+            forecast.weather[0].icon
+          }@2x.png" class="forecast-icon" />
+          <h3>
+            <strong>${Math.round(
+              forecast.main.temp_max
+            )}°</strong> ${Math.round(forecast.main.temp_min)}°
+          </h3>
+        </div>`;
+}
+// END WEATHER FORECAST
+
 // WEATHER SEARCH RESULTS
 function search(city) {
   let unit = "metric";
   let apiKey = "567bdd1a492b51ec8f3e522e5fb4d478";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
 }
 
 let searchBar = document.querySelector("#search-bar");
