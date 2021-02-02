@@ -10,6 +10,17 @@ h1 {
   margin: 0;
 }
 
+h2,
+h3 {
+  font-size: 15px;
+  margin: 0px;
+  text-align: center;
+}
+
+h3 {
+  color: #7c7c7c;
+}
+
 ul {
   margin: 0 0 10px;
   padding: 0;
@@ -72,6 +83,17 @@ a {
   height: 96px;
   width: 96px;
   float: left;
+}
+
+.forecast-day {
+  color: #c4c4c4;
+}
+
+.forecast-icon {
+  width: 50px;
+  padding: 0px;
+  display: block;
+  margin: auto;
 }
 
 .temperature {
