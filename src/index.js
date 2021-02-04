@@ -38,8 +38,15 @@ function searchInput(event) {
   let searchInput = document.querySelector("#search-input");
   search(searchInput.value);
   let city = document.querySelector("#result-city");
-  city.innerHTML = `${searchInput.value}`;
+  if (searchInput.value == "") {
+    alert("Please enter a city");
+  } else {
+    city.innerHTML = `${searchInput.value}`;
+  }
 }
+
+let searchBar = document.querySelector("#search-bar");
+searchBar.addEventListener("submit", searchInput);
 // END SEARCH LOCATION BAR
 
 // WEATHER FORECAST
@@ -80,9 +87,6 @@ function search(city) {
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(showForecast);
 }
-
-let searchBar = document.querySelector("#search-bar");
-searchBar.addEventListener("submit", searchInput);
 
 function showWeather(response) {
   let city = response.data.name;
