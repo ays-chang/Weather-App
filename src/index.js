@@ -1,6 +1,6 @@
 // DATE AND TIME
-function updateTimestamp(currentDateTime) {
-  let dayIndex = currentDateTime.getDay();
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -10,24 +10,26 @@ function updateTimestamp(currentDateTime) {
     "Friday",
     "Saturday",
   ];
-  let day = days[dayIndex];
+  let day = days[date.getDay()];
+  return `${day}  ${formatHours(timestamp)}`;
+}
 
-  let hour = currentDateTime.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
   }
-  let minute = currentDateTime.getMinutes();
-  if (minute < 10) {
-    minute = `0${minute}`;
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
   }
-
-  let formattedDate = `${day}  ${hour}:${minute}`;
-  return formattedDate;
+  return `${hours}:${minutes}`;
 }
 
 let timeStamp = document.querySelector("#result-date-time");
 let now = new Date();
-timeStamp.innerHTML = updateTimestamp(now);
+timeStamp.innerHTML = formatDate(now);
 // END DATE AND TIME
 
 // SEARCH LOCATION BAR
@@ -43,21 +45,28 @@ function searchInput(event) {
 // WEATHER FORECAST
 function showForecast(response) {
   let resultForecast = document.querySelector("#forecast");
-  let forecast = response.data.list[0];
+  resultForecast.innerHTML = null;
+  let forecast = null;
 
-  resultForecast.innerHTML = `<div class="col-2">
-          <h2 class="forecast-day">
-            Mon
-          </h2>
-          <img src="http://openweathermap.org/img/wn/${
-            forecast.weather[0].icon
-          }@2x.png" class="forecast-icon" />
-          <h3>
-            <strong>${Math.round(
-              forecast.main.temp_max
-            )}°</strong> ${Math.round(forecast.main.temp_min)}°
-          </h3>
-        </div>`;
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    resultForecast.innerHTML += `
+    <div class="col-2">
+      <h2 class="forecast-day">
+        ${formatHours(forecast.dt * 1000)}
+      </h2>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" class="forecast-icon" />
+      <h3>
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong> 
+          ${Math.round(forecast.main.temp_min)}°
+      </h3>
+    </div>
+    `;
+  }
 }
 // END WEATHER FORECAST
 
